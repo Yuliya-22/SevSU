@@ -176,11 +176,8 @@ object Lab2 {
 }
 
 object Main {
-
   def main(args: Array[String]): Unit = {
-
     Lab1.work()
     Lab2.work()
-
   }
 }
