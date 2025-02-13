@@ -23,24 +23,25 @@ object Lab3 {
   // Функция для печати дерева
   private def printTree(tree: Tree): Unit = {
     tree match {
-      case _: Leaf => println("Leaf")
       case node: Node =>
         printTree(node.getLeftSubtree)
         println(node.getNodeData)
         printTree(node.getRightSubtree)
+      case _: Leaf =>
+        print("\uD83C\uDF43 ")
     }
   }
 
   // Функция для вставки элемента
   private def insert(value: Int, tree: Tree): Tree = {
     tree match {
-      case _: Leaf => new Node(value, new Leaf, new Leaf)
       case node: Node =>
         if (value < node.getNodeData) {
           new Node(node.getNodeData, insert(value, node.getLeftSubtree), node.getRightSubtree)
         } else {
           new Node(node.getNodeData, node.getLeftSubtree, insert(value, node.getRightSubtree))
         }
+      case _: Leaf => new Node(value, new Leaf, new Leaf)
     }
   }
 
@@ -48,23 +49,22 @@ object Lab3 {
   @tailrec
   private def contains(value: Int, tree: Tree): Boolean = {
     tree match {
-      case _: Leaf => false
       case node: Node =>
         if (value == node.getNodeData) {
-          true
-        } else if (value < node.getNodeData) {
-          contains(value, node.getLeftSubtree)
-        } else {
-          contains(value, node.getRightSubtree)
-        }
+          true }
+        else if (value < node.getNodeData) {
+          contains(value, node.getLeftSubtree) }
+        else {
+          contains(value, node.getRightSubtree) }
+      case _: Leaf => false
     }
   }
 
   // Функция для вычисления суммы элементов
   private def sum(tree: Tree): Int = {
     tree match {
-      case _: Leaf => 0
       case node: Node => node.getNodeData + sum(node.getLeftSubtree) + sum(node.getRightSubtree)
+      case _: Leaf => 0
     }
   }
 
@@ -72,20 +72,18 @@ object Lab3 {
     println("\n\n--------------------------------------------------------------Лабораторная 3\n")
     var tree: Tree = new Leaf
     tree = insert(5, tree)
-    tree = insert(3, tree)
+    tree = insert(2, tree)
     tree = insert(7, tree)
     tree = insert(1, tree)
     tree = insert(8, tree)
-    tree = insert(3, tree)
-    tree = insert(10, tree)
-    tree = insert(1, tree)
-    tree = insert(6, tree)
-    tree = insert(14, tree)
+    tree = insert(-1, tree)
     println(s"Дерево в порядке возрастания: ")
     printTree(tree)
-    println(s"Содержит ли дерево 3? Ответ: ${contains(3, tree)}")
-    println(s"Содержит ли дерево 6? Ответ: ${contains(6, tree)}")
-    println(s"Содержит ли дерево 9? Ответ: ${contains(9, tree)}")
+    println("")
+
+    println(s"Содержит ли дерево 1? Ответ: ${contains(1, tree)}")
+    println(s"Содержит ли дерево 4? Ответ: ${contains(4, tree)}")
+    println(s"Содержит ли дерево 8? Ответ: ${contains(8, tree)}")
     println(s"Сумма всех элементов: ${sum(tree)}")
   }
 }
