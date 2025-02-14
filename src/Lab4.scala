@@ -4,19 +4,19 @@ object Lab4 {
   // Определение case-класса для передачи аргументов в фунцию деления
   private case class NumPair(numerator: Int, denominator: Int)
   // Определение case-классов для узлов дерева вычислений
-  sealed trait Expr
-  case class Number(value: Double) extends Expr
-  case class Add(left: Expr, right: Expr) extends Expr
-  case class Subtract(left: Expr, right: Expr) extends Expr
-  case class Multiply(left: Expr, right: Expr) extends Expr
-  case class Divide(left: Expr, right: Expr) extends Expr
+  private sealed trait Expr
+  private case class Number(value: Double) extends Expr
+  private case class Add(left: Expr, right: Expr) extends Expr
+  private case class Subtract(left: Expr, right: Expr) extends Expr
+  private case class Multiply(left: Expr, right: Expr) extends Expr
+  private case class Divide(left: Expr, right: Expr) extends Expr
 
   private def dividePairs(pairs: List[(Int, Int)]): List[Option[Double]] = {
     pairs.map {
       case (numerator, denominator) =>
         denominator match {
-          case 0 => None                                    // Если второй элемент равен нулю
-          case _ => Some(numerator.toDouble / denominator)  // Выполняем деление
+          case 0 => None
+          case _ => Some(numerator.toDouble / denominator)
         }
     }
   }
@@ -32,8 +32,8 @@ object Lab4 {
     pairs.map {
       case NumPair(numerator, denominator) =>
         denominator match {
-          case 0 => None  // Если второй элемент равен нулю
-          case _ => Some(numerator.toDouble / denominator)  // Выполняем деление
+          case 0 => None
+          case _ => Some(numerator.toDouble / denominator)
         }
     }
   }

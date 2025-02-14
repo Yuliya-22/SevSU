@@ -77,9 +77,7 @@ object Lab2 {
   }
 
   private def transformList(lst: List[Int]): List[String] = {
-    lst.zipWithIndex.map { case (value, index) =>
-      s"Элемент под номером $index равен $value"
-    }
+    lst.zipWithIndex.map { case (value, index) => s"Элемент под номером $index равен $value" }
   }
 
   def work(): Unit = {
