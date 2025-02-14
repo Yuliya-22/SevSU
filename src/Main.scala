@@ -5,6 +5,7 @@ object Main {
 //    Lab2.work()
 //    Lab3.work()
 //    Lab4.work()
-    Lab5.work()
+//    Lab5.work()
+    Lab6.work()
   }
 }
